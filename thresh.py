@@ -3,9 +3,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 import fgrad, nmaxsup
 
+# Performs a thresholding pass over the given image
+# 1. Set the high and low thresholds, and strong and weak values
+# 2. For each pixel in the output array, if the pixel in the input image is 
+#    above the threshold, set it equal to strong, otherwise set it to weak
 def thresh(img):
-    T_h = img.max()*.08
-    T_l = img.max()*.04
+    T_h = img.max()*.1
+    T_l = T_h*.04
     w, s = 50, 255
 
     result = np.zeros(img.shape)

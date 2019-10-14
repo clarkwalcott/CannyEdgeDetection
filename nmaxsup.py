@@ -3,15 +3,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 import fgrad
 
+# Suppresses the non-maximum values in the image
+# 1. For each pixel, find the direction D* in (0, 45, 90, 135) that is closest 
+#    to the orientation D at that pixel
+# 2. If the edge strength F(x,y) is smaller than at least one of its neighbors along D*,
+#    set I(x,y) = 0, else set I(x,y) = F(x,y)
 def suppress(img, D):
     dstar = convertScaleAbs(D)
-    print(dstar)
     m, n = img.shape
     padded = copyMakeBorder(dstar, 1, 1, 1, 1, BORDER_CONSTANT)
-    print(padded)
     sup = np.zeros((m,n))
-    print(m,n)
-    print(padded.shape)
     for i in range(1, m-1):
         for j in range(1, n-1):
             s, r = 255, 255
