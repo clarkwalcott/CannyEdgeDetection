@@ -10,23 +10,35 @@ import matplotlib.pyplot as plt
 # (Steps 2 and 3 may be combined by convolving the image with the derivative of a Gaussian)
 def gradient(img):
     blur = GaussianBlur(img, (5,5), 0)
-    kernelx = np.array([[-1,0,1],[-2,0,2],[-1,0,1]], np.float64)
-    kernely = np.array([[-1,-2,-1],[0,0,0],[1,2,1]], np.float64)
+    kernelx = np.array([[-1,0,1],[-2,0,2],[-1,0,1]])
+    kernely = np.array([[-1,-2,-1],[0,0,0],[1,2,1]])
 
     sobelx = filter2D(blur, CV_64F, kernel=kernelx)
     sobely = filter2D(blur, CV_64F, kernel=kernely)
     
     F = np.hypot(sobelx, sobely, casting="same_kind")
-    D = np.arctan2(sobely, sobelx, casting="same_kind")
+    D = np.arctan2(sobely, sobelx)
+    
+    fig, axs = plt.subplots(nrows=2, ncols=2, figsize=(8,8))
+    axs[0,0].set_title('Fx')
+    axs[0,0].imshow(sobelx, cmap='gray')
+    axs[0,0].axis('off')
+    axs[0,1].set_title('Fy')
+    axs[0,1].imshow(sobely, cmap='gray')
+    axs[0,1].axis('off')
+    axs[1,0].set_title('F')
+    axs[1,0].imshow(F, cmap='gray')
+    axs[1,0].axis('off')    
+    axs[1,1].set_title('D')
+    axs[1,1].imshow(D, cmap='gray')
+    axs[1,1].axis('off')        
+    plt.show()
+    # print(D)
     return F, D
 
 def main():
     img = imread("lena.png", 0)
     F, D = gradient(img)
-    D_Star = convertScaleAbs(D)
-    print(D_Star)
-    f = plt.figure(figsize=(20,20))
-    plt.imshow(F, cmap='gray')
-    plt.show()
+    
 if __name__ == "__main__":
     main()
