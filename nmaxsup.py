@@ -36,7 +36,7 @@ def suppress(img, D):
     return sup
 
 def main():
-    img = imread("lena.png", 0)
+    img = imread("images/lena.png", 0)
     F, D = fgrad.gradient(img)
     sup = suppress(F, D)
     f = plt.figure(figsize=(5,5))
