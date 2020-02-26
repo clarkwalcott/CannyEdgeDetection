@@ -37,7 +37,7 @@ def gradient(img):
     return F, D
 
 def main():
-    img = imread("lena.png", 0)
+    img = imread("images/lena.png", 0)
     F, D = gradient(img)
     
 if __name__ == "__main__":
