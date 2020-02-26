@@ -36,9 +36,9 @@ def start(img):
     plt.show()
 
 def main():
-    img1 = imread("lena.png", 0)
-    img2 = imread("edge.tif", 0)
-    img3 = imread("building.tif", 0)
+    img1 = imread("images/lena.png", 0)
+    img2 = imread("images/edge.tif", 0)
+    img3 = imread("images/building.tif", 0)
     start(img1)
     start(img2)
     start(img3)
