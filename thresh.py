@@ -22,7 +22,7 @@ def thresh(img):
     return (result, w, s)
 
 def main():
-    img = imread("lena.png", 0)
+    img = imread("images/lena.png", 0)
     F, D = fgrad.gradient(img)
     sup = nmaxsup.suppress(F, D)
     T = thresh(sup)
